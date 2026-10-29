@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #030307;
+    font-family: 'Press Start 2P', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Sala escura de fliperama ao fundo */
+.arcade-room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #10101c 0%, #020205 80%);
+}
+
+/* Monitor CRT Retrô */
+.crt-monitor {
+    position: relative;
+    width: 480px;
+    height: 640px;
+    background-color: #0b0b0e;
+    border-radius: 35px;
+    border: 12px solid #1a1a24;
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.9),
+        inset 0 0 30px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(0, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Efeito de Scanlines (Linhas de varredura do tubo CRT) */
+.scanlines {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 10;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+}
+
+/* Brilho curvo da tela */
+.crt-monitor::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    z-index: 11;
+}
+
+.screen-content {
+    width: 100%;
+    height: 100%;
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+/* Título Principal */
+.title {
+    color: #00ffff;
+    font-size: 26px;
+    text-align: center;
+    text-shadow: 0 0 8px #00ffff, 0 0 20px #0088ff;
+    letter-spacing: 2px;
+}
+
+/* Subtítulo e Caixa */
+.menu-header {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.box-frame {
+    display: inline-block;
+    border: 2px solid #ff00ff;
+    padding: 6px 16px;
+    color: #ffff00;
+    font-size: 10px;
+    text-shadow: 0 0 5px #ff00ff;
+    box-shadow: inset 0 0 8px rgba(255, 0, 255, 0.4), 0 0 8px rgba(255, 0, 255, 0.4);
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: #ff55ff;
+    font-size: 9px;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+/* Lista de Jogos */
+.game-list {
+    list-style: none;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.game-item {
+    font-size: 11px;
+    color: #ffaa00;
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 4px rgba(255, 170, 0, 0.5);
+}
+
+.game-item.selected {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+.pointer {
+    margin-right: 10px;
+    opacity: 0;
+    color: #ffff00;
+}
+
+.game-item.selected .pointer {
+    opacity: 1;
+}
+
+/* Rodapé */
+.footer-info {
+    text-align: center;
+    font-size: 9px;
+    color: #ffffff;
+    line-height: 1.6;
+    text-shadow: 0 0 4px #ffffff;
+}
+
+.blink {
+    animation: blink-animation 1s steps(2, start) infinite;
+    color: #ffff00;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
